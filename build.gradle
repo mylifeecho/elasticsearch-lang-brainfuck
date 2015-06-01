@@ -1,0 +1,39 @@
+group 'org.mylifeecho'
+version '0.0.1'
+
+apply plugin: 'scala'
+
+sourceCompatibility = 1.6
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+configurations {
+    includeJars
+}
+
+dependencies {
+    compile 'org.scala-lang:scala-library:2.11.6'
+    compile 'org.elasticsearch:elasticsearch:1.5.2'
+    testCompile 'junit:junit:4.11'
+    includeJars 'org.scala-lang:scala-library:2.11.6'
+}
+
+task buildPluginZip(type: Zip, dependsOn:[':jar']) {
+    baseName = 'elasticsearch-lang-brainfuck'
+    classifier = 'plugin'
+    from files(libsDir)
+    from { configurations.includeJars.collect { it } }
+}
+
+artifacts {
+    archives buildPluginZip
+}
+
+task run(type: JavaExec, dependsOn: classes) {
+    main = 'org.elasticsearch.bootstrap.ElasticsearchF'
+    classpath sourceSets.main.runtimeClasspath
+    classpath configurations.runtime
+}
