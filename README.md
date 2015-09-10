@@ -42,6 +42,6 @@ gives
       "doc_count_error_upper_bound": 0,
       "sum_other_doc_count": 0,
       "buckets": [{
-        "key": "Hello World!", // <--- resutl of script evaluation
+        "key": "Hello World!", // <--- result of script evaluation
         "doc_count": 1 }]}}}
 ```
