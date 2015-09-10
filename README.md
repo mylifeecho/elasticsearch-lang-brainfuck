@@ -34,7 +34,7 @@ curl -XPOST http://localhost:9200/_search -d '
 
 gives
 
-```json
+```javascript
 {
   // ...
   "aggregations": {
